@@ -1,3 +1,6 @@
+# c "chop.exs"
+# Chop.guess(273, 1..1000)
+
 defmodule Chop do
   def guess(actual, range) do
     min..max = range
@@ -12,15 +15,17 @@ defmodule Chop do
 
   defp helper(actual, range, guess) when actual < guess do
     min.._max = range
-    middle = div((guess - 1) - min, 2) + min
+    max = guess - 1
+    middle = div(max - min, 2) + min
     IO.puts "Is it #{middle}"
-    helper(actual, min..guess, middle)
+    helper(actual, min..max, middle)
   end
 
   defp helper(actual, range, guess) when actual > guess do
     _min..max = range
-    middle = div(max - (guess + 1), 2) + guess
+    min = guess + 1
+    middle = div(max - min, 2) + min
     IO.puts "Is it #{middle}"
-    helper(actual, guess..max, middle)
+    helper(actual, min..max, middle)
   end
 end
