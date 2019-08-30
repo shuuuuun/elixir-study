@@ -2,8 +2,7 @@
 # Chop.guess(273, 1..1000)
 
 defmodule Chop do
-  def guess(actual, range) do
-    min..max = range
+  def guess(actual, min..max) do
     check(actual, min, max)
   end
 
@@ -17,14 +16,12 @@ defmodule Chop do
     IO.puts "#{guess}"
   end
 
-  defp helper(actual, range, guess) when actual < guess do
-    min.._max = range
+  defp helper(actual, min.._max, guess) when actual < guess do
     max = guess - 1
     check(actual, min, max)
   end
 
-  defp helper(actual, range, guess) when actual > guess do
-    _min..max = range
+  defp helper(actual, _min..max, guess) when actual > guess do
     min = guess + 1
     check(actual, min, max)
   end
