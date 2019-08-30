@@ -6,21 +6,21 @@ defmodule Chop do
     helper(actual, range, middle)
   end
 
-  defp helper(actual, range, guess) when actual === guess do
+  defp helper(actual, _range, guess) when actual === guess do
     IO.puts "#{guess}"
   end
 
   defp helper(actual, range, guess) when actual < guess do
-    min..max = range
-    middle = div(actual - min, 2) + min
+    min.._max = range
+    middle = div((guess - 1) - min, 2) + min
     IO.puts "Is it #{middle}"
-    helper(actual, range, middle)
+    helper(actual, min..guess, middle)
   end
 
   defp helper(actual, range, guess) when actual > guess do
-    min..max = range
-    middle = div(max - actual, 2) + actual
+    _min..max = range
+    middle = div(max - (guess + 1), 2) + guess
     IO.puts "Is it #{middle}"
-    helper(actual, range, middle)
+    helper(actual, guess..max, middle)
   end
 end
