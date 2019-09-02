@@ -18,4 +18,12 @@ defmodule MyList do
   # MyList.map [1, 2, 3, 9], &(&1 + 1)
   def map([], _func), do: []
   def map([head | tail], func), do: [ func.(head) | map(tail, func)]
+
+  # MyList.sum [1, 2, 3, 9]
+  def sum(list), do: _sum(list, 0)
+  defp _sum([], total), do: total
+  defp _sum([head, tail], total), do: _sum(tail, head+total)
+
+  def sum2([head, []]), do: head
+  def sum2([head, tail]), do: head+sum2(tail)
 end
