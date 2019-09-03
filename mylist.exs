@@ -22,8 +22,8 @@ defmodule MyList do
   # MyList.sum [1, 2, 3, 9]
   def sum(list), do: _sum(list, 0)
   defp _sum([], total), do: total
-  defp _sum([head, tail], total), do: _sum(tail, head+total)
+  defp _sum([head | tail], total), do: _sum(tail, head+total)
 
-  def sum2([head, []]), do: head
-  def sum2([head, tail]), do: head+sum2(tail)
+  def sum2([head | []]), do: head
+  def sum2([head | tail]), do: head+sum2(tail)
 end
