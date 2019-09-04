@@ -26,4 +26,8 @@ defmodule MyList do
 
   def sum2([head | []]), do: head
   def sum2([head | tail]), do: head+sum2(tail)
+
+  # MyList.mapsum [1, 2, 3], &(&1 * &1)
+  def mapsum([], _), do: 0
+  def mapsum([head | tail], func), do: func.(head)+mapsum(tail, func)
 end
