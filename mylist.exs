@@ -1,4 +1,5 @@
 # c "mylist.exs"
+# docker run -it --rm -v $PWD:/app elixir iex app/mylist.exs
 
 defmodule MyList do
   # MyList.len [1,2,3,1,1,1]
@@ -27,7 +28,21 @@ defmodule MyList do
   def sum2([head | []]), do: head
   def sum2([head | tail]), do: head+sum2(tail)
 
+  # MyList.reduce [1, 2, 3, 4], 0, &(&1+&2)
+  def reduce([], value, _), do: value
+  def reduce([head | tail], value, func) do
+    reduce(tail, func.(head, value), func)
+  end
+
   # MyList.mapsum [1, 2, 3], &(&1 * &1)
   def mapsum([], _), do: 0
   def mapsum([head | tail], func), do: func.(head)+mapsum(tail, func)
+
+  def max([head | tail]), do: _max(tail, head)
+  defp _max([], value), do: value
+  defp _max([head | tail], value) do
+    # _max(tail, head > value ? head : value)
+    val = if head > value, do: head, else: value
+    _max(tail, val)
+  end
 end
