@@ -56,4 +56,8 @@ defmodule MyList do
       if res > 122, do: res - 122 + 97 + 1, else: res
     end)
   end
+
+  def span(from, to) when from == to, do: [from]
+  def span(from, to) when from < to, do: [from | span(from+1, to)]
+  def span(from, to) when from > to, do: [from | span(from-1, to)]
 end
