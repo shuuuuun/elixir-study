@@ -45,4 +45,15 @@ defmodule MyList do
     val = if head > value, do: head, else: value
     _max(tail, val)
   end
+
+  # MyList.caesar 'ryvkve', 13
+  # def caesar(list, n), do: map(list, &(&1 + n))
+  def caesar(list, n) do
+    map(list, fn (v) ->
+      # a 97
+      # z 122
+      res = v + n
+      if res > 122, do: res - 122 + 97 + 1, else: res
+    end)
+  end
 end
