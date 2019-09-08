@@ -1,4 +1,4 @@
-# docker run -it --rm -v $PWD:/app elixir bash -c "iex app/*.exs"
+# docker run -it --rm -v $PWD:/app -w /app elixir
 # docker-compose run --rm iex
 # docker-compose up
 
@@ -6,7 +6,13 @@ version: '3'
 
 services:
   iex:
-    build: .
-    command: bash -c "iex app/*.exs"
+    # build: .
+    image: elixir
+    # command: bash -c "iex"
+    # command: iex
+    tty: true
+    stdin_open: true
+    # なんかうまくいかん
+    working_dir: /app
     volumes:
       - .:/app
