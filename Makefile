@@ -1,4 +1,4 @@
-.PHONY: docker-iex
-docker-iex:
+.PHONY: iex
+iex:
 	docker run -it --rm -v ${PWD}:/app -w /app elixir
 
