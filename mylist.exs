@@ -60,4 +60,10 @@ defmodule MyList do
   def span(from, to) when from == to, do: [from]
   def span(from, to) when from < to, do: [from | span(from+1, to)]
   def span(from, to) when from > to, do: [from | span(from-1, to)]
+
+  # MyList.flatten [1, [2, 3, [4]], 5, [[[6]]]]
+  def flatten(list), do: _flatten(list, [])
+  defp _flatten([], acc), do: Enum.reverse(acc)
+  defp _flatten([head | tail], acc), do: _flatten(tail, _flatten(head, []) ++ acc)
+  defp _flatten(val, acc), do: [val | acc]
 end
