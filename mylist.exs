@@ -61,6 +61,23 @@ defmodule MyList do
   def span(from, to) when from < to, do: [from | span(from+1, to)]
   def span(from, to) when from > to, do: [from | span(from-1, to)]
 
+  # 2からnまでの素数のリストを返す
+  # span 関数とリスト内包表記で書く
+  # MyList.prime_num 30
+  def prime_num(n) do
+    # span(2, n) |> Enum.filter(fn x ->
+    #   span(2, x) |> Enum.all?(fn y -> x == y || rem(x, y) != 0 end)
+    # end)
+    for x <- span(2, n), span(2, x) |> Enum.all?(fn y -> x == y || rem(x, y) != 0 end), do: x
+
+    # Enum使わずはにできないかな?
+    # for x <- span(2, n), y <- span(2, x), x > y, rem(x, y) != 0, do: {x, y}
+    # for x <- span(2, n) do
+    #   # for y <- span(2, x), x > y, rem(x, y) != 0, do: {x, y}
+    #   for y <- span(2, x), x == y || rem(x, y) != 0, do: x
+    # end
+  end
+
   # MyList.flatten [1, [2, 3, [4]], 5, [[[6]]]]
   def flatten(list), do: _flatten(list, []) |> Enum.reverse
   defp _flatten([], acc), do: acc
