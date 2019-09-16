@@ -21,7 +21,7 @@ defmodule Issues.CLI do
     IO.puts """
     usage: issues <user> <project> [ count | #{@default_count} ]
     """
-    System.hault(0)
+    System.halt(0)
   end
   def process({user, project, _count}) do
     Issues.GithubIssues.fetch(user, project)
