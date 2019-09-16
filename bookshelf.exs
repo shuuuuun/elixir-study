@@ -11,17 +11,19 @@ defmodule Bookshelf do
       [ id: 129, ship_to: :CA, net_amount: 102.00 ],
       [ id: 130, ship_to: :NC, net_amount:  50.00 ],
     ]
-    _run(tax_rates, orders)
+    calc(tax_rates, orders)
   end
 
-  defp _run(tax_rates, orders) do
+  def calc(tax_rates, orders) do
     orders
     |> Enum.map(fn order ->
-      # order ++ [total_amount: order[:net_amount]]
-      order ++ [total_amount: calc_total_amount(order[:ship_to], order[:net_amount], tax_rates)]
+      # order ++ [total_amount: calc_total_amount(order, tax_rates)]
+      Keyword.merge(order, [total_amount: calc_total_amount(order, tax_rates)])
+      # Keyword.put(order, :total_amount, calc_total_amount(order, tax_rates))
     end)
   end
-  defp calc_total_amount(ship_to, amount, tax_rates) do
+
+  defp calc_total_amount([id: _, ship_to: ship_to, net_amount: amount], tax_rates) do
     tax_rate = tax_rates[ship_to] || 0
     amount + amount * tax_rate
   end
