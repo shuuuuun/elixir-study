@@ -1,3 +1,6 @@
+# $ mix run -e 'Issues.CLI.run(["-h"])'
+# $ mix run -e 'Issues.CLI.run(["elixir-lang", "elixir"])'
+
 defmodule Issues.CLI do
   @default_count 4
 
@@ -23,11 +26,12 @@ defmodule Issues.CLI do
     """
     System.halt(0)
   end
-  def process({user, project, _count}) do
+  def process({user, project, count}) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response
     |> convert_to_list_of_maps
     |> sort_into_ascending_order
+    |> Enum.take(count)
   end
 
   def decode_response({:ok, body}), do: body
