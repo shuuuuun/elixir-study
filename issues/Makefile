@@ -8,7 +8,7 @@ run-sample:
 
 .PHONY: build
 build:
-	mix escript.build
+	MIX_ENV=prod mix escript.build
 
 .PHONY: get
 get:
