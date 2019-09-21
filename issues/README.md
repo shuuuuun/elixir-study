@@ -1,6 +1,8 @@
 # Issues
 
-**TODO: Add description**
+Elixir Study Project.
+
+ref. https://pragprog.com/book/elixir12/programming-elixir-1-2
 
 ## Installation
 
@@ -18,4 +20,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/issues](https://hexdocs.pm/issues).
-

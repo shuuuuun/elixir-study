@@ -1,6 +1,3 @@
-# $ mix run -e 'Issues.CLI.run(["-h"])'
-# $ mix run -e 'Issues.CLI.run(["elixir-lang", "elixir"])'
-
 defmodule Issues.CLI do
   @default_count 4
 
