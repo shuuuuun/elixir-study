@@ -4,10 +4,10 @@ defmodule Issues.MixProject do
   def project do
     [
       app: :issues,
+      name: "Issues",
       version: "0.1.0",
       elixir: "~> 1.9",
-      escript: escript_config(),
-      # name:            "Issues",
+      escript: escript(),
       # source_url:      "https://github.com/pragdave/issues",
       build_embedded:  Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -34,7 +34,10 @@ defmodule Issues.MixProject do
     ]
   end
 
-  defp escript_config do
-    [ main_module: Issues.CLI ]
+  defp escript do
+    [
+      main_module: Issues.CLI,
+      path: "bin/issues"
+    ]
   end
 end
