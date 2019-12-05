@@ -20,6 +20,7 @@ dict_stream
       [exact_match, partial_match] |> Enum.map(&to_string/1) |> Enum.join(", ")
     end)
   # |> Stream.map(&to_string/1)
-  |> Stream.map(&(&1 <> "\n"))
-  |> Stream.into(File.stream!("temp-ex.csv"))
+  # |> Stream.map(&(&1 <> "\n"))
+  |> Stream.map(&IO.puts/1)
+  # |> Stream.into(File.stream!("temp-ex.csv"))
   |> Stream.run
